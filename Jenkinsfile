@@ -6,7 +6,6 @@ pipeline {
                 script {
                     echo "DEBUG: Iniciando la clonación del repositorio..."
                     try {
-                        // Utiliza 'github-credentials' como el ID de las credenciales configuradas
                         git branch: 'main', credentialsId: 'github-credentials', url: 'https://github.com/valkarov/Paradigmas-Programacion.git'
                         echo "DEBUG: Clonación del repositorio exitosa."
                     } catch (Exception e) {
@@ -16,30 +15,18 @@ pipeline {
                 }
             }
         }
-        stage('Build') {
+        stage('Execute Commands') {
             steps {
                 script {
-                    echo "DEBUG: Iniciando la compilación del proyecto..."
+                    echo "DEBUG: Ejecutando comandos..."
                     try {
-                        sh 'mvn clean install'
-                        echo "DEBUG: Compilación del proyecto exitosa."
+                        // Coloca aquí los comandos que necesites ejecutar
+                        sh 'echo "Comando 1 ejecutado"'
+                        sh 'echo "Comando 2 ejecutado"'
+                        echo "DEBUG: Comandos ejecutados exitosamente."
                     } catch (Exception e) {
-                        echo "ERROR: Error en la compilación del proyecto: ${e.getMessage()}"
-                        error("Build failed")
-                    }
-                }
-            }
-        }
-        stage('Test') {
-            steps {
-                script {
-                    echo "DEBUG: Iniciando las pruebas del proyecto..."
-                    try {
-                        sh 'mvn test'
-                        echo "DEBUG: Pruebas del proyecto exitosas."
-                    } catch (Exception e) {
-                        echo "ERROR: Error en las pruebas del proyecto: ${e.getMessage()}"
-                        error("Tests failed")
+                        echo "ERROR: Error al ejecutar los comandos: ${e.getMessage()}"
+                        error("Failed to execute commands")
                     }
                 }
             }
