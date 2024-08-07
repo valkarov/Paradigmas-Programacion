@@ -4,7 +4,7 @@ pipeline {
     stages {
         stage('Clone Repository') {
             steps {
-                git 'https://github.com/tu-usuario/tu-repositorio.git'
+                git 'https://github.com/valkarov/Paradigmas-Programacion.git'
             }
         }
         stage('Build') {
