@@ -4,10 +4,10 @@ pipeline {
         stage('Clone Repository') {
             steps {
                 script {
-                    echo "DEBUG: Iniciando la clonación del repositorio..."
+                    echo "Iniciando la clonación del repositorio..."
                     try {
                         git branch: 'main', credentialsId: 'github-credentials', url: 'https://github.com/valkarov/Paradigmas-Programacion.git'
-                        echo "DEBUG: Clonación del repositorio exitosa."
+                        echo "Clonación del repositorio exitosa."
                     } catch (Exception e) {
                         echo "ERROR: Error al clonar el repositorio: ${e.getMessage()}"
                         error("Failed to clone repository")
