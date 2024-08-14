@@ -32,23 +32,4 @@ pipeline {
             }
         }
     }
-    post {
-        success {
-            emailext(
-                subject: "Pipeline completado con éxito: ${env.JOB_NAME} [${env.BUILD_NUMBER}]",
-                body: """<p>El pipeline <b>${env.JOB_NAME}</b> se completó con éxito en la build <b>${env.BUILD_NUMBER}</b>.</p>
-                         <p>Puedes ver más detalles en: <a href="${env.BUILD_URL}">${env.BUILD_URL}</a></p>""",
-                to: 'val16flores@gmai.com'
-            )
-        }
-        failure {
-            emailext(
-                subject: "Pipeline fallido: ${env.JOB_NAME} [${env.BUILD_NUMBER}]",
-                body: """<p>El pipeline <b>${env.JOB_NAME}</b> falló en la build <b>${env.BUILD_NUMBER}</b>.</p>
-                         <p>Error: ${currentBuild.result}</p>
-                         <p>Puedes ver más detalles en: <a href="${env.BUILD_URL}">${env.BUILD_URL}</a></p>""",
-                to: 'val16flores@gmai.com'
-            )
-        }
-    }
 }
